@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Header from './Header/Header'
+import SummaryForm from './Summary/SummaryForm'
 class App extends Component {
   constructor(props){
     super(props);
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const summary = Object.keys(this.state.selected)
+    /*const summary = Object.keys(this.state.selected)
           .map(key => <div className="summary__option" key={key}>
             <div className="summary__option__label">{key}  </div>
             <div className="summary__option__value">{this.state.selected[key].name}</div>
@@ -46,7 +47,7 @@ class App extends Component {
         </div>)
 
     const total = Object.keys(this.state.selected)
-          .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
+          .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);     */
 
 
     const features = Object.keys(this.props.features)
@@ -76,26 +77,18 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>ELF Computing</h1>
-          <h3>Laptops</h3>
-          <h5>Customize your laptop</h5>  
+          <Header />
         </header>      
+
         <main>
+
           <section className="main__form">
             <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
             { features }
           </section>
-          <section className="main__summary">
-            <h3>NEW GREENLEAF 2018</h3>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Your Price: </div>
-              <div className="summary__total__value">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(total) }
-              </div>
-            </div>
-          </section>
+
+         <SummaryForm 
+            selected={this.state.selected}/>
         </main>
       </div>
     );
